@@ -1,0 +1,23 @@
+.containerTemplate{
+
+  display: flex;
+  flex-wrap: wrap;
+  max-width: 1000px;
+
+  margin-left: auto;
+  margin-right: auto;
+  margin-bottom: 80px;
+
+  .character{
+
+    margin-right: 20px;
+
+    img{
+
+      width: 200px;
+      height: 200px;
+
+    }
+
+  }
+}
