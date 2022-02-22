@@ -1,8 +1,16 @@
 import '../css/app.scss';
+import Characters from './characters';
 
-function component () {
-    let element = document.createElement('div');
-    element.innerHTML = "Hello World !";
-    return element;
+
+class App {
+    constructor() {
+        this.initApp();
+    }
+
+    initApp() {
+        // Start application
+        new Characters();
+    }
 }
-document.body.appendChild(component());
+
+new App();
