@@ -1,16 +1,35 @@
+header{
+
+  h1{
+
+    font-size: 18px;
+    font-weight: 700;
+
+    margin-top: 30px;
+    margin-left: 50px;
+
+  }
+
+  img{
+
+    display: flex;
+    margin: 60px auto 100px;
+
+  }
+
+}
 .containerTemplate{
 
   display: flex;
   flex-wrap: wrap;
-  max-width: 1000px;
+  max-width: 890px;
+  justify-content: space-between;
 
   margin-left: auto;
   margin-right: auto;
   margin-bottom: 80px;
 
   .character{
-
-    margin-right: 20px;
 
     img{
 
@@ -20,4 +39,29 @@
     }
 
   }
+
+}
+
+button{
+
+  background-color: #00B0C8;
+  border: 5px solid #C1DA51;
+  box-sizing: border-box;
+
+  font-weight: 900;
+  font-size: 20px;
+  font-family: 'Nunito', sans-serif;
+  color: white;
+
+  width: 200px;
+  height: 59px;
+  //filter: blur(4px);
+  border-radius: 10px;
+
+}
+
+footer{
+
+  background: linear-gradient(90deg, #C1DA51 0%, #00B0C8 100%);
+
 }
