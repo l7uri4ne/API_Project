@@ -1,7 +1,9 @@
 @import './vendors/reset';
+@import './common/variables';
+@import './common/global';
 
 @import 'characters';
+@import 'character';
+@import 'frontPage';
 
-body{
-  font-family: 'Nunito', sans-serif;
-}
+
