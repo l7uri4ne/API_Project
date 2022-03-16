@@ -1,14 +1,72 @@
 <!DOCTYPE html>
 <html>
-    <head>
-        <link rel="preconnect" href="https://fonts.googleapis.com">
-        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-        <link href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
-        <title>Rick and Morty API</title>
-    </head>
-    <body>
-        <a href="characters.html">Link to Characters</a>
+<head>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://unpkg.com/swiper@8/swiper-bundle.min.css"/>
+    <script src="https://unpkg.com/swiper@8/swiper-bundle.min.js"></script>
+    <title>Rick and Morty API</title>
+</head>
+<body class="js-frontPage frontPage">
+    <header>
+        <h1><a href="index.html">Rick and Morty API</a></h1>
+        <img src="./images/rickMortyTitle.png" alt="Rick and Morty title">
+    </header>
+    <div class="main">
+        <h2>Discover three random characters:</h2>
 
+        <!-- Slider main container -->
+        <div class="swiper">
+            <!-- Additional required wrapper -->
+            <div class="swiper-wrapper">
+                <!-- Slides -->
+                <div class="swiper-slide" id="first">Slide 1</div>
+                <div class="swiper-slide" id="second">Slide 2</div>
+                <div class="swiper-slide" id="third">Slide 3</div>
+            </div>
+            <!-- If we need pagination -->
+            <div class="swiper-pagination"></div>
 
-    </body>
+            <!-- If we need navigation buttons -->
+            <div class="swiper-button-prev"></div>
+            <div class="swiper-button-next"></div>
+
+            <!-- If we need scrollbar -->
+            <div class="swiper-scrollbar"></div>
+        </div>
+
+        <a id="seeAll" href="characters.html">See all characters</a>
+    </div>
+
+    <footer>
+        <div>
+            <p>API Website: <a href="https://rickandmortyapi.com/" target="_blank">https://rickandmortyapi.com/</a></p>
+            <p> Copyright ©2022 || Lauriane Samuel </p>
+        </div>
+    </footer>
+
+    <script>
+        const swiper = new Swiper('.swiper', {
+
+            // If we need pagination
+            pagination: {
+                el: '.swiper-pagination',
+            },
+
+            // Navigation arrows
+            navigation: {
+                nextEl: '.swiper-button-next',
+                prevEl: '.swiper-button-prev',
+            },
+
+            effect: 'fade',
+            fadeEffect: {
+                crossFade: true
+            },
+
+        });
+    </script>
+
+</body>
 </html>
