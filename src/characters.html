@@ -7,20 +7,27 @@
     <link href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
     <title>Characters - Rick and Morty</title>
 </head>
-<body>
+<body class="js-characters">
     <header>
-        <h1>Rick and Morty API</h1>
+        <h1><a href="index.html">Rick and Morty API</a></h1>
         <img src="./images/rickMortyTitle.png" alt="Rick and Morty title">
     </header>
-
+    <div class="filterButtons">
+        <button class="js-allButton">All</button>
+        <button class="js-aliveButton">Alive</button>
+        <button class="js-deadButton">Dead</button>
+    </div>
     <div class="containerTemplate"></div>
-    <div class="buttons">
-        <button class="js-previousButton"><=PREVIOUS</button>
+    <div class="backButtons">
+        <button class="js-previousButton">Previous</button>
         <button class="js-nextButton">Next</button>
     </div>
 
     <footer>
-
+        <div>
+            <p>API Website: <a href="https://rickandmortyapi.com/" target="_blank">https://rickandmortyapi.com/</a></p>
+            <p> Copyright ©2022 || Lauriane Samuel </p>
+        </div>
     </footer>
 </body>
 </html>

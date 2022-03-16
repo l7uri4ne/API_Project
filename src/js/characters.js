@@ -1,11 +1,12 @@
 import $ from 'jquery';
-import charactersTemplate from "../hbs/characters.hbs"
+import charactersTemplate from "../hbs/characters.hbs";
 
 export default class Characters{
     constructor() {
         this.initEls();
         this.initEvents();
     }
+
 
     initEls() {
         //API settings
@@ -25,12 +26,28 @@ export default class Characters{
         const next = document.querySelector('.js-nextButton');
         const previous = document.querySelector('.js-previousButton');
 
+        const all = document.querySelector('.js-allButton');
+        const alive = document.querySelector('.js-aliveButton');
+        const dead = document.querySelector('.js-deadButton');
+
         next.addEventListener('click', () => {
             this.getNext(this.next);
         });
 
         previous.addEventListener('click', () => {
             this.getPrevious(this.previous);
+        });
+
+        all.addEventListener('click', () => {
+            this.getCharacters(this.all);
+        });
+
+        alive.addEventListener('click', () => {
+            this.getAlive(this.alive);
+        });
+
+        dead.addEventListener('click', () => {
+            this.getDead(this.dead);
         });
 
     }
@@ -65,12 +82,54 @@ export default class Characters{
                 //console.log(response);
                 this.previous = response.info.prev;
                 //console.log(this.next);
-                this.renderCharacters(response);
+                this.renderCharacters(response.info.prev);
             })
             .catch((e) => {
                 console.log('Quote error: ', e);
             })
         console.log(this.previous);
+    }
+
+    getAlive(url){
+
+        fetch("https://rickandmortyapi.com/api/character/?status=alive", {
+            "endpoint": url,
+        })
+            .then(response => {
+                return response.json();
+
+            }).then((json) => {
+            console.log(json);
+            this.next = json.info.next;
+            this.previous = json.info.prev;
+            console.log("previous"+this.previous);
+            this.renderCharacters(json);
+        })
+            .catch(err => {
+                console.error(err);
+            });
+
+    }
+
+    getDead(url){
+
+        fetch("https://rickandmortyapi.com/api/character/?status=dead", {
+            "endpoint": url,
+        })
+            .then(response => {
+                return response.json();
+
+            }).then((json) => {
+            console.log(json);
+            this.next = json.info.next;
+            this.previous = json.info.prev;
+            console.log("previous"+this.previous);
+            this.renderCharacters(json);
+        })
+            .catch(err => {
+                console.error(err);
+            });
+
     }
 
     getCharacters(url){
@@ -84,13 +143,12 @@ export default class Characters{
             console.log(json);
             this.next = json.info.next;
             this.previous = json.info.prev;
-            console.log("previous"+this.previous)
+            console.log("previous"+this.previous);
             this.renderCharacters(json);
         })
             .catch(err => {
                 console.error(err);
             });
-
 
     }
 
