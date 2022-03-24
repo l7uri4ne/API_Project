@@ -46,6 +46,7 @@ header{
 
 .containerTemplate{
 
+  opacity: 0.5;
   display: flex;
   flex-wrap: wrap;
   max-width: 890px;
@@ -115,6 +116,12 @@ header{
 
 }
 
+.load{
+
+  opacity: 1;
+
+}
+
 .backButtons{
 
   max-width: 430px;
@@ -124,6 +131,12 @@ header{
 
   display: flex;
   justify-content: space-between;
+
+}
+
+#previous{
+
+  visibility: hidden;
 
 }
 

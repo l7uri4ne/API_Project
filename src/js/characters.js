@@ -2,6 +2,7 @@ import $ from 'jquery';
 import charactersTemplate from "../hbs/characters.hbs";
 
 export default class Characters{
+
     constructor() {
         this.initEls();
         this.initEvents();
@@ -17,12 +18,15 @@ export default class Characters{
         }
         this.els = {
             container: document.querySelector('.container'),
+            load: document.querySelector('.containerTemplate')
         }
 
     }
 
     initEvents() {
         this.getCharacters('https://rickandmortyapi.com/api/character');
+
+
         const next = document.querySelector('.js-nextButton');
         const previous = document.querySelector('.js-previousButton');
 
@@ -35,7 +39,7 @@ export default class Characters{
         });
 
         previous.addEventListener('click', () => {
-            this.getPrevious(this.previous);
+            this.getPrevious();
         });
 
         all.addEventListener('click', () => {
@@ -53,6 +57,9 @@ export default class Characters{
     }
 
     getNext(url){
+
+        this.els.load.classList.remove("load");
+
         console.log('next', url);
         const apiNext = {
             endpoint: url,
@@ -62,32 +69,42 @@ export default class Characters{
             .then((response) => {
                 //console.log(response);
                 this.next = response.info.next;
+                this.previous = response.info.prev;
+                this.els.load.className += ' load';
                 //console.log(this.next);
+                console.log(this.previous);
                 this.renderCharacters(response);
             })
             .catch((e) => {
                 console.log('Quote error: ', e);
             })
         console.log(this.next);
+
     }
 
-    getPrevious(url){
-        console.log('previous', url);
+    getPrevious(){
+
+        this.els.load.classList.remove("load");
+
+        console.log('previous', this.previous);
         const apiPrev = {
-            endpoint: url,
+            endpoint: this.previous,
         };
         $.ajaxSetup ({cache: false});
         $.getJSON(apiPrev.endpoint)
             .then((response) => {
                 //console.log(response);
+                this.next = response.info.next;
                 this.previous = response.info.prev;
+                this.els.load.className += ' load';
                 //console.log(this.next);
-                this.renderCharacters(response.info.prev);
+                this.renderCharacters(response);
             })
             .catch((e) => {
                 console.log('Quote error: ', e);
             })
         console.log(this.previous);
+
     }
 
     getAlive(url){
@@ -96,6 +113,7 @@ export default class Characters{
             "endpoint": url,
         })
             .then(response => {
+
                 return response.json();
 
             }).then((json) => {
@@ -120,12 +138,13 @@ export default class Characters{
                 return response.json();
 
             }).then((json) => {
-            console.log(json);
-            this.next = json.info.next;
-            this.previous = json.info.prev;
-            console.log("previous"+this.previous);
-            this.renderCharacters(json);
-        })
+
+                console.log(json);
+                this.next = json.info.next;
+                this.previous = json.info.prev;
+                console.log("previous"+this.previous);
+                this.renderCharacters(json);
+            })
             .catch(err => {
                 console.error(err);
             });
@@ -137,10 +156,10 @@ export default class Characters{
             "endpoint": url,
         })
             .then(response => {
+                this.els.load.className += ' load';
                 return response.json();
-
             }).then((json) => {
-            console.log(json);
+            console.log("getcharacter",json);
             this.next = json.info.next;
             this.previous = json.info.prev;
             console.log("previous"+this.previous);
@@ -155,6 +174,16 @@ export default class Characters{
 
     renderCharacters(charact){
         console.log(charact);
+        if (this.previous != null){
+            $("#previous").css("visibility", "visible");
+        }else {
+            $("#previous").css("visibility", "hidden");
+        }
+        if (this.next != null){
+            $("#next").css("visibility", "visible");
+        }else {
+            $("#next").css("visibility", "hidden");
+        }
         const charactTemplate = charactersTemplate({
             data: charact.results,
         });
